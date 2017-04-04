@@ -37,7 +37,7 @@ void Pkt_insert(struct Pkt* Pkts,char* pkt,int i,int total_len){
 
 	char* dst=Pkts[i].pkt;
 	memcpy(dst,pkt,total_len);
-	Pkts[i].empty=false;
+	Pkts[i].empty=0;
 
 }
 
@@ -111,6 +111,7 @@ void test(){
 
 		char* dst=((Pkt*)pkts)[i].pkt;
 		memcpy(dst,head,len+14);
+		pkts[i].empty=0;
  		gpu_nf_process(pkts,fs,0x010203,32);
  		//cudaFree(pkts);
 		//cudaFree(fs);
@@ -135,6 +136,7 @@ void test(){
 		//printf("i=%d\n",i);
 		char* dst=((Pkt*)pkts)[i].pkt;
 		memcpy(dst,head,len+14);
+		pkts[i].empty=0;
 
 		i++;
 
