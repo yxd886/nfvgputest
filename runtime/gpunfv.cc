@@ -104,7 +104,7 @@ int main(int argc, char **argv)
 
  	   }
 
- 	   	fflush(stdout);
+ 	   	//fflush(stdout);
  		char* dst=pkts[i].pkt;
  		memcpy(dst,head,len+14);
 
