@@ -116,7 +116,7 @@ GPUNFV_OBJS = $(filter-out main.o $(filter-out gpunfv.o,$(SAMPLES_OBJS)),$(OBJS)
 
 .PHONY: all clean
 
-all: $(OBJS) $(CU_OBJS) $(REAL_RPC_BASIC_MAIN_EXEC)
+all: $(OBJS) $(CU_OBJS) $(GPUNFV_EXEC)
 
 clean:
 	rm -rf $(EXEC) .deps/*.d .deps/*/*.d *_test */*_test *_bench */*_bench \
