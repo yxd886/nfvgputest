@@ -44,7 +44,7 @@ void Pkt_insert(struct Pkt* Pkts,char* pkt,int i,int total_len){
 void Pkt_reset(struct Pkt* Pkts,int num){
 
 	for(int i=0;i<num;i++){
-		Pkts[i].empty=true;
+		Pkts[i].empty=1;
 	}
 }
 
