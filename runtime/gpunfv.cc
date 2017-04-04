@@ -87,7 +87,7 @@ int main(int argc, char **argv)
  	   //cout<<"put packet to the hander"<<endl;
  	  printf("fread packet ok");
 
- 	   /*if(i==31){
+ 	   if(i==31){
 
  		cudaMallocManaged(&pkts, 32*32*sizeof(Pkt));
  		cudaMallocManaged(&fs, 32*sizeof(Fs));
@@ -101,7 +101,7 @@ int main(int argc, char **argv)
 
 
  	  Pkt_insert(pkts,head,i,len);
- 	  */
+
  	  i++;
 
 
