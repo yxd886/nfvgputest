@@ -99,7 +99,7 @@ int main(int argc, char **argv)
 
 
  		char* dst=Pkts[i].pkt;
- 		memcpy(dst,pkt,total_len+14);
+ 		memcpy(dst,head,len+14);
 
  	  i++;
 
