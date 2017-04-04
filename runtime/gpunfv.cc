@@ -112,7 +112,7 @@ int main(int argc, char **argv)
  		fflush(stdout);
  		pkts=NULL;
  		fs=NULL;
-
+/*
  		err=cudaMallocManaged(&pkts, 32*32*sizeof(Pkt));
  		if(err!=cudaSuccess){
  			printf("cuda malloc fail，error code: %s\n",cudaGetErrorString(err));
@@ -121,12 +121,7 @@ int main(int argc, char **argv)
  		if(err!=cudaSuccess){
  			printf("cuda malloc fail，error code: %s\n",cudaGetErrorString(err));
  		}
- 		/*pkts=(Pkt*)malloc(32*32*sizeof(Pkt));
- 		fs=(Fs*)malloc(32*sizeof(Fs));
- 		if(pkts==NULL||fs==NULL){
- 			printf("malloc wrong\n");
- 		}*/
-
+ 		*/
  		Pkt_reset(pkts,32*32);
  		i=0;
 
