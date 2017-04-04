@@ -75,7 +75,7 @@ void test(){
 			printf("cuda malloc fail，error code: %s\n",cudaGetErrorString(err));
 	}
 
-	Pkt_reset((Pkts*)pkts,32*32);
+	Pkt_reset((Pkt*)pkts,32*32);
 
     FILE* f;
     if( (f=fopen("code.txt","r"))==NULL){
@@ -109,7 +109,7 @@ void test(){
 
 
 
-		char* dst=pkts[i].pkt;
+		char* dst=((Pkt*)pkts)[i].pkt;
 		memcpy(dst,head,len+14);
  		gpu_nf_process(pkts,fs,0x010203,32);
  		//cudaFree(pkts);
@@ -127,13 +127,13 @@ void test(){
  			printf("cuda malloc fail，error code: %s\n",cudaGetErrorString(err));
  		}
  		*/
- 		Pkt_reset(pkts,32*32);
+ 		Pkt_reset(((Pkt*)pkts),32*32);
  		i=0;
 
  	   }else{
 		//fflush(stdout);
 		//printf("i=%d\n",i);
-		char* dst=pkts[i].pkt;
+		char* dst=((Pkt*)pkts)[i].pkt;
 		memcpy(dst,head,len+14);
 
 		i++;
