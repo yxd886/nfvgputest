@@ -51,6 +51,8 @@ void Pkt_reset(struct Pkt* Pkts,int num){
 void test(){
 
 	printf("sizeof bool: %d",sizeof(bool));
+	printf("sizeof PKT: %d",sizeof(Pkt));
+	printf("sizeof FS: %d",sizeof(Fs));
 	struct ether_header *m_pEthhdr;
 	struct iphdr *m_pIphdr;
     char tmp1[2000];
