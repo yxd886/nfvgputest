@@ -16,7 +16,8 @@
 #include <netinet/udp.h>
 #include <netinet/in.h>
 #include <net/ethernet.h>
-
+#include <time.h>
+#include   <sys/time.h>
 
 #include <cuda_runtime.h>
 
@@ -78,15 +79,22 @@ int main(int argc, char **argv)
     if( (f=fopen("code.txt","r"))==NULL){
  	  printf("OPen File failure\n");
  	}
-    printf("begin to enter loop\n");
+    //printf("begin to enter loop\n");
     int i=0;
 
-    printf("begin to enter loop1\n");
+    //printf("begin to enter loop1\n");
+
+    struct timeval whole_begin;
+    gettimeofday(&whole_begin,0);
+    long begin=whole_begin.tv_sec*1000000 + whole_begin.tv_usec;
+    long end=whole_end.tv_sec*1000000 + whole_end.tv_usec;
+    LOG(INFO)<<"packet process whole time: "<<end-begin;
+
     for(int j=0;j<300;j++){
  	   //cout<<"begin to read code"<<endl;
-    	printf("begin to read head\n");
+    	//printf("begin to read head\n");
        fread(head,34,1,f);
- 	   printf("fread head ok\n");
+ 	   //printf("fread head ok\n");
  	   //cout<<"read head ok"<<endl;
  	  m_pEthhdr=(struct ether_header *)head;
  	  m_pIphdr=(struct iphdr *)(head+sizeof(struct ether_header));
@@ -96,7 +104,7 @@ int main(int argc, char **argv)
  	   fread(packet,len-20,1,f);
  	   //cout<<"read  packet ok"<<endl;
  	   //cout<<"put packet to the hander"<<endl;
- 	  printf("fread packet ok\n");
+ 	  //printf("fread packet ok\n");
 
  	   if(i==31){
 
@@ -108,7 +116,7 @@ int main(int argc, char **argv)
  		//cudaFree(pkts);
 		//cudaFree(fs);
 
- 		printf("i==31\n");
+ 		//printf("i==31\n");
  		fflush(stdout);
 /*
  		err=cudaMallocManaged(&pkts, 32*32*sizeof(Pkt));
@@ -125,7 +133,7 @@ int main(int argc, char **argv)
 
  	   }else{
 		fflush(stdout);
-		printf("i=%d\n",i);
+		//printf("i=%d\n",i);
 		char* dst=pkts[i].pkt;
 		memcpy(dst,head,len+14);
 
@@ -137,7 +145,12 @@ int main(int argc, char **argv)
 
 
    }
-   printf("out of loop\n");
+
+    struct timeval whole_end;
+    gettimeofday(&whole_end,0);
+    long begin=whole_begin.tv_sec*1000000 + whole_begin.tv_usec;
+    long end=whole_end.tv_sec*1000000 + whole_end.tv_usec;
+   printf("time: %ld\n,",end-begin);
 
    fclose(f);
 
