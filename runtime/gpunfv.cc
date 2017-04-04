@@ -65,7 +65,7 @@ int main(int argc, char **argv)
 	struct Fs *fs;
 	cudaMallocManaged(&pkts, 32*32*sizeof(Pkt));
 	cudaMallocManaged(&fs, 32*sizeof(Fs));
-	pkts[0].empty=ture;
+	pkts[0].empty=true;
     FILE* f;
     if( (f=fopen("code.txt","r"))==NULL){
  	  printf("OPen File failure\n");
