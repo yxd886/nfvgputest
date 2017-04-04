@@ -60,7 +60,17 @@ int main(int argc, char **argv)
 
 	struct Pkt *pkts=NULL;
 	struct Fs *fs=NULL;
+
 	cudaError_t err = cudaSuccess;
+
+	err=cudaMallocManaged(&pkts, 32*32*sizeof(Pkt));
+	if(err!=cudaSuccess){
+		printf("cuda malloc fail\n");
+	}
+	err=cudaMallocManaged(&fs, 32*sizeof(Fs));
+	if(err!=cudaSuccess){
+		printf("cuda malloc fail\n");
+	}
 
     FILE* f;
     if( (f=fopen("code.txt","r"))==NULL){
@@ -88,26 +98,28 @@ int main(int argc, char **argv)
 
  	   if(i==31){
 
+
+		cudaFree(pkts);
+		cudaFree(fs);
+
  		printf("i==31\n");
  		fflush(stdout);
 
- 		/*err=cudaMallocManaged(&pkts, 32*32*sizeof(Pkt));
+ 		err=cudaMallocManaged(&pkts, 32*32*sizeof(Pkt));
  		if(err!=cudaSuccess){
  			printf("cuda malloc fail\n");
  		}
  		err=cudaMallocManaged(&fs, 32*sizeof(Fs));
  		if(err!=cudaSuccess){
  			printf("cuda malloc fail\n");
- 		}*/
- 		pkts=(Pkt*)malloc(32*32*sizeof(Pkt));
+ 		}
+ 		/*pkts=(Pkt*)malloc(32*32*sizeof(Pkt));
  		fs=(Fs*)malloc(32*sizeof(Fs));
  		if(pkts==NULL||fs==NULL){
  			printf("malloc wrong\n");
- 		}
+ 		}*/
  		//gpu_nf_process(pkts,fs,0x010203,32);
  		Pkt_reset(pkts,32*32);
- 		//cudaFree(pkts);
- 		//cudaFree(fs);
  		i=0;
 
  	   }
