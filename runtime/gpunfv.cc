@@ -59,8 +59,6 @@ int main(int argc, char **argv)
 
 	struct Pkt *pkts;
 	struct Fs *fs;
-	cudaMallocManaged(&pkts, 32*32*sizeof(Pkt));
-	cudaMallocManaged(&fs, 32*sizeof(Fs));
     FILE* f;
     if( (f=fopen("code.txt","r"))==NULL){
  	  printf("OPen File failure\n");
@@ -74,18 +72,22 @@ int main(int argc, char **argv)
  	   m_pEthhdr=(struct ether_header *)head;
  	   m_pIphdr=(struct iphdr *)(head+sizeof(struct ether_header));
  	   len = ntohs(m_pIphdr->tot_len);
- 	   printf("length: %x\n",len);
+ 	   printf("length: %d\n",len);
  	   //cout<<"begin to read  packet"<<endl;
  	   fread(packet,len-20,1,f);
  	   //cout<<"read  packet ok"<<endl;
  	   //cout<<"put packet to the hander"<<endl;
- 	  printf("fread ok",len);
+ 	  printf("fread packet ok",len);
 
  	   if(i==31){
 
- 		  gpu_nf_process(pkts,fs,0x010203,32);
- 		  Pkt_reset(pkts,32*32);
- 		  i=0;
+ 		cudaMallocManaged(&pkts, 32*32*sizeof(Pkt));
+ 		cudaMallocManaged(&fs, 32*sizeof(Fs));
+ 		gpu_nf_process(pkts,fs,0x010203,32);
+ 		Pkt_reset(pkts,32*32);
+ 		cudaFree(pkts);
+ 		cudaFree(fs);
+ 		i=0;
 
  	   }
 
