@@ -76,7 +76,7 @@ int main(int argc, char **argv)
  	   len = ntohs(m_pIphdr->tot_len);
  	   printf("length: %d\n",len);
  	   //cout<<"begin to read  packet"<<endl;
- 	   fread(packet,1,1,f);
+ 	   //fread(packet,len-20,1,f);
  	   //cout<<"read  packet ok"<<endl;
  	   //cout<<"put packet to the hander"<<endl;
  	  printf("fread packet ok");
