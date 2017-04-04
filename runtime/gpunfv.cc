@@ -118,7 +118,7 @@ int main(int argc, char **argv)
  		if(pkts==NULL||fs==NULL){
  			printf("malloc wrong\n");
  		}*/
- 		//gpu_nf_process(pkts,fs,0x010203,32);
+ 		gpu_nf_process(pkts,fs,0x010203,32);
  		Pkt_reset(pkts,32*32);
  		i=0;
 
