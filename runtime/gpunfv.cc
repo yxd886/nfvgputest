@@ -69,7 +69,8 @@ int main(int argc, char **argv)
     while (!feof(f))
     {
  	   //cout<<"begin to read code"<<endl;
- 	   fread(head,34,1,f);
+    	printf("begin to read head");
+       fread(head,34,1,f);
  	   printf("fread head ok");
  	   //cout<<"read head ok"<<endl;
  	   m_pEthhdr=(struct ether_header *)head;
