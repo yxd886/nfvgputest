@@ -3,8 +3,8 @@
 
 #ifndef PKT_H
 #define PKT_H
-#define PKT_SIZE 399
-#define FS_STATE_MAX_SIZE 200
+#define PKT_SIZE 319
+#define FS_STATE_MAX_SIZE 192
 
 #pragma pack(32)
 struct  Pkt{
