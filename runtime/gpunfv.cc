@@ -72,6 +72,8 @@ int main(int argc, char **argv)
 		printf("cuda malloc fail\n");
 	}
 
+	Pkt_reset(pkts,32*32);
+
     FILE* f;
     if( (f=fopen("code.txt","r"))==NULL){
  	  printf("OPen File failure\n");
@@ -99,7 +101,11 @@ int main(int argc, char **argv)
  	   if(i==31){
 
 
-		cudaFree(pkts);
+
+		char* dst=pkts[i].pkt;
+		memcpy(dst,head,len+14);
+ 		gpu_nf_process(pkts,fs,0x010203,32);
+ 		cudaFree(pkts);
 		cudaFree(fs);
 
  		printf("i==31\n");
@@ -118,18 +124,21 @@ int main(int argc, char **argv)
  		if(pkts==NULL||fs==NULL){
  			printf("malloc wrong\n");
  		}*/
- 		gpu_nf_process(pkts,fs,0x010203,32);
+
  		Pkt_reset(pkts,32*32);
  		i=0;
 
+ 	   }else{
+		fflush(stdout);
+		printf("i=%d\n",i);
+		char* dst=pkts[i].pkt;
+		memcpy(dst,head,len+14);
+
+		i++;
+
  	   }
 
- 	   	fflush(stdout);
- 	   	printf("i=%d\n",i);
- 		char* dst=pkts[i].pkt;
- 		memcpy(dst,head,len+14);
 
- 	  i++;
 
 
    }
