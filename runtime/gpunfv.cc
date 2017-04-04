@@ -60,6 +60,7 @@ int main(int argc, char **argv)
 
 	struct Pkt *pkts;
 	struct Fs *fs;
+	cudaError_t err = cudaSuccess;
 
     FILE* f;
     if( (f=fopen("code.txt","r"))==NULL){
@@ -71,9 +72,9 @@ int main(int argc, char **argv)
     printf("begin to enter loop1\n");
     for(int j=0;j<300;j++){
  	   //cout<<"begin to read code"<<endl;
-    	printf("begin to read head");
+    	printf("begin to read head\n");
        fread(head,34,1,f);
- 	   printf("fread head ok");
+ 	   printf("fread head ok\n");
  	   //cout<<"read head ok"<<endl;
  	  m_pEthhdr=(struct ether_header *)head;
  	  m_pIphdr=(struct iphdr *)(head+sizeof(struct ether_header));
@@ -83,12 +84,18 @@ int main(int argc, char **argv)
  	   fread(packet,len-20,1,f);
  	   //cout<<"read  packet ok"<<endl;
  	   //cout<<"put packet to the hander"<<endl;
- 	  printf("fread packet ok");
+ 	  printf("fread packet ok\n");
 
  	   if(i==31){
 
- 		cudaMallocManaged(&pkts, 32*32*sizeof(Pkt));
- 		cudaMallocManaged(&fs, 32*sizeof(Fs));
+ 		err=cudaMallocManaged(&pkts, 32*32*sizeof(Pkt));
+ 		if(err!=cudaSuccess){
+ 			printf("cuda malloc fail\n");
+ 		}
+ 		err=cudaMallocManaged(&fs, 32*sizeof(Fs));
+ 		if(err!=cudaSuccess){
+ 			printf("cuda malloc fail\n");
+ 		}
  		//gpu_nf_process(pkts,fs,0x010203,32);
  		Pkt_reset(pkts,32*32);
  		cudaFree(pkts);
@@ -105,7 +112,7 @@ int main(int argc, char **argv)
 
 
    }
-   printf("out of loop");
+   printf("out of loop\n");
 
    fclose(f);
 
