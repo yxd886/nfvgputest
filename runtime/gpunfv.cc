@@ -103,7 +103,7 @@ int main(int argc, char **argv)
  	   //cout<<"put packet to the hander"<<endl;
  	  //printf("fread packet ok\n");
 
- 	   if(i==0){
+ 	   if(i==31){
 
 
 
@@ -114,7 +114,7 @@ int main(int argc, char **argv)
 		//cudaFree(fs);
 
  		//printf("i==31\n");
- 		fflush(stdout);
+ 		//fflush(stdout);
 /*
  		err=cudaMallocManaged(&pkts, 32*32*sizeof(Pkt));
  		if(err!=cudaSuccess){
@@ -129,7 +129,7 @@ int main(int argc, char **argv)
  		i=0;
 
  	   }else{
-		fflush(stdout);
+		//fflush(stdout);
 		//printf("i=%d\n",i);
 		char* dst=pkts[i].pkt;
 		memcpy(dst,head,len+14);
