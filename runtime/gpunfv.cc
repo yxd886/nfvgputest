@@ -91,18 +91,20 @@ int main(int argc, char **argv)
  		printf("i==31\n");
  		fflush(stdout);
 
- 		err=cudaMallocManaged(&pkts, 32*32*sizeof(Pkt));
+ 		/*err=cudaMallocManaged(&pkts, 32*32*sizeof(Pkt));
  		if(err!=cudaSuccess){
  			printf("cuda malloc fail\n");
  		}
  		err=cudaMallocManaged(&fs, 32*sizeof(Fs));
  		if(err!=cudaSuccess){
  			printf("cuda malloc fail\n");
- 		}
+ 		}*/
+ 		pkts=(Pkt*)malloc(32*32*sizeof(Pkt));
+ 		fs=(Fs*)malloc(32*sizeof(Fs));
  		//gpu_nf_process(pkts,fs,0x010203,32);
  		Pkt_reset(pkts,32*32);
- 		cudaFree(pkts);
- 		cudaFree(fs);
+ 		//cudaFree(pkts);
+ 		//cudaFree(fs);
  		i=0;
 
  	   }
