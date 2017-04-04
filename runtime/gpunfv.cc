@@ -77,7 +77,7 @@ int main(int argc, char **argv)
  	   fread(packet,len-20,1,f);
  	   //cout<<"read  packet ok"<<endl;
  	   //cout<<"put packet to the hander"<<endl;
- 	  printf("fread packet ok",len);
+ 	  printf("fread packet ok");
 
  	   if(i==31){
 
