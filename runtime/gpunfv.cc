@@ -105,13 +105,11 @@ int main(int argc, char **argv)
 		char* dst=pkts[i].pkt;
 		memcpy(dst,head,len+14);
  		gpu_nf_process(pkts,fs,0x010203,32);
- 		cudaFree(pkts);
-		cudaFree(fs);
+ 		//cudaFree(pkts);
+		//cudaFree(fs);
 
  		printf("i==31\n");
  		fflush(stdout);
- 		pkts=NULL;
- 		fs=NULL;
 /*
  		err=cudaMallocManaged(&pkts, 32*32*sizeof(Pkt));
  		if(err!=cudaSuccess){
