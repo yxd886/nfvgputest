@@ -99,7 +99,7 @@ void test(){
 		char* dst=((Pkt*)pkts)[i].pkt;
 		memcpy(dst,head,len+14);
 		pkts[i].empty=0;
- 		gpu_nf_process(pkts,fs,0x03,32);
+ 		gpu_nf_process(pkts,fs,0x04,32);
  		Pkt_reset(((Pkt*)pkts),32*32);
  		i=0;
 
