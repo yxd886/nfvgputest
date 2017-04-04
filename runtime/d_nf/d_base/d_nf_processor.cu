@@ -59,13 +59,14 @@ Runtask(Pkt* pkts, Fs* fs, uint64_t service_chain,int packet_num)
     {
     	int j=i;
     	while(pkts[j].empty!=1){
+    		/*
     		for(int k=0; k<chain_len; k++){
     			int nf_id=compute_network_function(service_chain,k);
     			nfs.nf[nf_id]->nf_logic(pkts[j].pkt,fs[j%packet_num].fs[nf_id]);
     		}
     		j+=packet_num;
 
-
+	*/
     	}
     }
 }
