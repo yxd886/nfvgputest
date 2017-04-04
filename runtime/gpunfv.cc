@@ -86,9 +86,6 @@ int main(int argc, char **argv)
 
     struct timeval whole_begin;
     gettimeofday(&whole_begin,0);
-    long begin=whole_begin.tv_sec*1000000 + whole_begin.tv_usec;
-    long end=whole_end.tv_sec*1000000 + whole_end.tv_usec;
-    LOG(INFO)<<"packet process whole time: "<<end-begin;
 
     for(int j=0;j<300;j++){
  	   //cout<<"begin to read code"<<endl;
