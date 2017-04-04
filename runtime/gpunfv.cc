@@ -64,6 +64,7 @@ int main(int argc, char **argv)
     if( (f=fopen("code.txt","r"))==NULL){
  	  printf("OPen File failure\n");
  	}
+    printf("begin to enter loop\n");
     int i=0;
     while (!feof(f))
     {
