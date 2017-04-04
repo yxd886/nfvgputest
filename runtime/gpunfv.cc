@@ -34,9 +34,6 @@
  */
 void Pkt_insert(struct Pkt* Pkts,char* pkt,int i,int total_len){
 
-	while(Pkts[i].empty!=true){
-		i+=1;
-	}
 	char* dst=Pkts[i].pkt;
 	memcpy(dst,pkt,total_len);
 	Pkts[i].empty=false;
@@ -102,7 +99,7 @@ int main(int argc, char **argv)
  	   }
 
 
- 	  //Pkt_insert(pkts,head,i,len);
+ 	  Pkt_insert(pkts,head,i,len);
 
  	  i++;
 
