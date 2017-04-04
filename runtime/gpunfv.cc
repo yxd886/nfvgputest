@@ -101,6 +101,7 @@ int main(int argc, char **argv)
  	  i++;
 
    }
+   printf("out of loop");
 
    fclose(f);
 
