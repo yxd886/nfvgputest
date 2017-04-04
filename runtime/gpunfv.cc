@@ -60,9 +60,7 @@ int main(int argc, char **argv)
 
 	struct Pkt *pkts;
 	struct Fs *fs;
-	cudaMallocManaged(&pkts, 32*32*sizeof(Pkt));
-	cudaMallocManaged(&fs, 32*sizeof(Fs));
-	pkts[0].empty=true;
+
     FILE* f;
     if( (f=fopen("code.txt","r"))==NULL){
  	  printf("OPen File failure\n");
@@ -89,11 +87,12 @@ int main(int argc, char **argv)
 
  	   if(i==31){
 
-
- 		//gpu_nf_process(pkts,fs,0x010203,32);
+ 		cudaMallocManaged(&pkts, 32*32*sizeof(Pkt));
+ 		cudaMallocManaged(&fs, 32*sizeof(Fs));
+ 		gpu_nf_process(pkts,fs,0x010203,32);
  		Pkt_reset(pkts,32*32);
- 		//cudaFree(pkts);
- 		//cudaFree(fs);
+ 		cudaFree(pkts);
+ 		cudaFree(fs);
  		i=0;
 
  	   }
