@@ -51,7 +51,7 @@ PROTOCXXFLAGS = -Xcompiler -std=gnu++11,-O0,-Wno-unused-parameter
 CXXFLAGS += -ccbin g++ -Xcompiler -std=gnu++11,-g3,-ggdb3,-Ofast,-march=native,\
 	    -isystem $(DPDK_INC_DIR), -isystem $(CUDA_INC_DIR),-D_GNU_SOURCE,-Wall,-Wextra,-Wcast-align,-Wno-unused-parameter
 	    
-CUDAFLAGS += -ccbin g++ -m 64 -Icudaport/inc  -I$(DPDK_INC_DIR) -std=c++11 -Xcompiler -g3,-ggdb3,-Ofast,-march=native,-Wall,-Wextra,-Wcast-align,-Wno-unused-parameter
+CUDAFLAGS += -ccbin g++ -m 64 -Icudaport/inc  -I/usr/local/include/dpdk -std=c++11 -Xcompiler -g3,-ggdb3,-Ofast,-march=native,-Wall,-Wextra,-Wcast-align,-Wno-unused-parameter
 
 # -Wshadow should not be used for g++ 4.x, as it has too many false positives
 CXXVERSION_5_OR_HIGHER := $(shell expr $(CXXVERSION) \>= 50000)
