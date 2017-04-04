@@ -56,7 +56,7 @@ Runtask(float* pkts, float* fs, uint64_t service_chain,int packet_num)
 	int chain_len=compute_service_chain_length(service_chain);
 	int i = blockDim.x * blockIdx.x + threadIdx.x;
 
-    if (i < packet_num-1)
+    if (i < packet_num)
     {
     	int j=i;
     	while(((Pkt*)pkts)[j].empty!=true){
