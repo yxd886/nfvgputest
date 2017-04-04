@@ -25,8 +25,7 @@
 
 #include "d_nf/d_base/d_nf_processor.cuh"
 #include "d_nf/d_base/Pkt.h"
-char *pkts=NULL;
-char *fs=NULL;
+
 
 /**
  * This macro checks return value of the CUDA runtime call and exits
@@ -62,7 +61,8 @@ void test(){
     char *packet=tmp1+34;
     uint16_t len;
 
-
+	char *pkts=NULL;
+	char *fs=NULL;
 
 	cudaError_t err = cudaSuccess;
 

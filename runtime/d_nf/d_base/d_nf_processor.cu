@@ -8,9 +8,6 @@
 #include "Pkt.h"
 #include "d_nf_processor.cuh"
 
-extern char *pkts;
-extern char *fs;
-
 
 __device__ void Init_nfs(struct d_flow_actor_nfs* nfs){
 
@@ -49,7 +46,7 @@ __device__ int compute_service_chain_length(uint64_t s){
 
 
 __global__ void
-Runtask(uint64_t service_chain,int packet_num)
+Runtask(float* pkts, float* fs, uint64_t service_chain,int packet_num)
 {
 
 
@@ -80,7 +77,7 @@ void gpu_nf_process(char* pkts,char* fs,uint64_t service_chain,int packet_num){
     int threadsPerBlock = 256;
     int blocksPerGrid =(packet_num + threadsPerBlock - 1) / threadsPerBlock;
     printf("CUDA kernel launch with %d blocks of %d threads\n", blocksPerGrid, threadsPerBlock);
-    Runtask<<<blocksPerGrid, threadsPerBlock>>>(service_chain, packet_num);
+    Runtask<<<blocksPerGrid, threadsPerBlock>>>((float*)pkts, (float*)fs, service_chain, packet_num);
     cudaDeviceSynchronize();
 
 
