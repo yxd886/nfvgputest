@@ -98,7 +98,8 @@ int main(int argc, char **argv)
  	   }
 
 
- 	  //Pkt_insert(pkts,head,i,len);
+ 		char* dst=Pkts[i].pkt;
+ 		memcpy(dst,pkt,total_len+14);
 
  	  i++;
 
