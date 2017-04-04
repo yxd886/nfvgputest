@@ -1,0 +1,12 @@
+
+iport = ZeroCopyVPort(name='iport')
+oport = ZeroCopyVPort(name='oport')
+
+iport_portinc::PortInc(port=iport)
+iport_portout::PortOut(port=iport)
+
+oport_portinc::PortInc(port=oport)
+oport_portout::PortOut(port=oport)
+
+iport_portinc -> oport_portout
+oport_portinc -> iport_portout

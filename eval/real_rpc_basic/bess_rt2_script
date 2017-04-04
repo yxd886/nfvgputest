@@ -1,0 +1,61 @@
+import scapy.all as scapy
+
+print 'Adding sink'
+sink = Sink()
+
+print 'Adding ports and inc/out modules'
+# runtime 1:
+# iport_mac: 52:54:01:00:00:01
+# oport_mac: 52:54:01:00:00:02
+# cport_mac: 52:54:01:00:00:03
+rt1_iport = ZeroCopyVPort(name='rt1_iport')
+rt1_oport = ZeroCopyVPort(name='rt1_oport')
+rt1_cport = ZeroCopyVPort(name='rt1_cport')
+
+rt1_iport_portout::PortOut(port=rt1_iport)
+rt1_oport_portinc::PortInc(port=rt1_oport)
+rt1_cport_portinc::PortInc(port=rt1_cport)
+rt1_cport_portout::PortOut(port=rt1_cport)
+
+print 'Adding Physical Port'
+rt1_pdport = PMDPort(name='rt1_pdport', port_id=0)
+rt1_pcport = PMDPort(name='rt1_pcport', port_id=1)
+
+rt1_pdport_portout::PortOut(port=rt1_pdport)
+rt1_pdport_portinc::PortInc(port=rt1_pdport)
+
+rt1_pcport_portout::PortOut(port=rt1_pcport)
+rt1_pcport_portinc::PortInc(port=rt1_pcport)
+
+
+print 'Adding dp/cp l2forward'
+dp_l2forward = L2Forward()
+cp_l2forward = L2Forward()
+
+print 'Adding dp/cp connections'
+
+#runtime 1 dataplane output connect to dp_l2forward
+rt1_oport_portinc -> dp_l2forward
+rt1_pdport_portinc -> dp_l2forward
+
+dp_l2forward:0 -> rt1_pdport_portout
+dp_l2forward:1 -> rt1_iport_portout
+
+rt1_cport_portinc -> cp_l2forward
+cp_l2forward:0 -> rt1_pcport_portout
+cp_l2forward:1 -> rt1_cport_portout
+rt1_pcport_portinc -> cp_l2forward
+
+rt1_oport_portinc -> sink
+
+ret = dp_l2forward.add([{'addr':'52:54:01:00:00:01', 'gate':0},
+                        {'addr':'52:54:03:00:00:01', 'gate':0},
+                        {'addr':'52:54:02:00:00:01', 'gate':1}])
+assert ret is None, 'Incorrect response'
+print 'adding dp_l2forward rule ok'
+
+ret = cp_l2forward.add([{'addr':'52:54:01:00:00:03', 'gate':0},
+						{'addr':'52:54:03:00:00:03', 'gate':0},
+						{'addr':'52:54:02:00:00:03', 'gate':1}])
+assert ret is None, 'Incorrect response'
+print 'adding cp_l2forward rule ok'
