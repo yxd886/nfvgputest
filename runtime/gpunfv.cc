@@ -103,7 +103,7 @@ int main(int argc, char **argv)
  	   //cout<<"put packet to the hander"<<endl;
  	  //printf("fread packet ok\n");
 
- 	   if(i==1){
+ 	   if(i==0){
 
 
 
