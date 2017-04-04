@@ -6,12 +6,13 @@
 #define PKT_SIZE 399
 #define FS_STATE_MAX_SIZE 200
 
-
+#pragma pack(4)
 struct  Pkt{
 	bool empty;
 	char pkt[PKT_SIZE];
 };
 
+#pragma pack(4)
 struct  Fs{
 	uint64_t actor_id_64;
 	char fs[8][FS_STATE_MAX_SIZE];
