@@ -77,9 +77,9 @@ int main(int argc, char **argv)
        //fread(head,34,1,f);
  	   printf("fread head ok");
  	   //cout<<"read head ok"<<endl;
- 	   m_pEthhdr=(struct ether_header *)head;
- 	   m_pIphdr=(struct iphdr *)(head+sizeof(struct ether_header));
- 	   len = ntohs(m_pIphdr->tot_len);
+ 	   //m_pEthhdr=(struct ether_header *)head;
+ 	  // m_pIphdr=(struct iphdr *)(head+sizeof(struct ether_header));
+ 	   //len = ntohs(m_pIphdr->tot_len);
  	   //printf("length: %d\n",len);
  	   //cout<<"begin to read  packet"<<endl;
  	   //fread(packet,len-20,1,f);
