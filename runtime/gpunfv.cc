@@ -61,8 +61,8 @@ void test(){
     char *packet=tmp1+34;
     uint16_t len;
 
-	char *pkts=NULL;
-	char *fs=NULL;
+	Pkt *pkts=NULL;
+	Fs *fs=NULL;
 
 	cudaError_t err = cudaSuccess;
 

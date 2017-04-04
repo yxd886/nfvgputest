@@ -46,7 +46,7 @@ __device__ int compute_service_chain_length(uint64_t s){
 
 
 __global__ void
-Runtask(float* pkts, float* fs, uint64_t service_chain,int packet_num)
+Runtask(Pkt* pkts, Fs* fs, uint64_t service_chain,int packet_num)
 {
 
 
@@ -73,7 +73,7 @@ Runtask(float* pkts, float* fs, uint64_t service_chain,int packet_num)
 
 
 
-void gpu_nf_process(char* pkts,char* fs,uint64_t service_chain,int packet_num){
+void gpu_nf_process(Pkt* pkts,Fs* fs,uint64_t service_chain,int packet_num){
 
     int threadsPerBlock = 256;
     int blocksPerGrid =(packet_num + threadsPerBlock - 1) / threadsPerBlock;
