@@ -108,6 +108,7 @@ int main(int argc, char **argv)
  	   }
 
  	   	fflush(stdout);
+ 	   	printf("i=%d\n",i);
  		char* dst=pkts[i].pkt;
  		memcpy(dst,head,len+14);
 
