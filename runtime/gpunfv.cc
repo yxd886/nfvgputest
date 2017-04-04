@@ -93,7 +93,7 @@ int main(int argc, char **argv)
 
 
  		//gpu_nf_process(pkts,fs,0x010203,32);
- 		Pkt_reset(pkts,32*32);
+ 		//Pkt_reset(pkts,32*32);
  		//cudaFree(pkts);
  		//cudaFree(fs);
  		i=0;
