@@ -69,8 +69,9 @@ int main(int argc, char **argv)
  	}
     printf("begin to enter loop\n");
     int i=0;
+    int j=0;
     printf("begin to enter loop1\n");
-    while (!feof(f))
+    while (j!=500)
     {
  	   //cout<<"begin to read code"<<endl;
     	printf("begin to read head");
@@ -102,6 +103,7 @@ int main(int argc, char **argv)
 
  	  Pkt_insert(pkts,head,i,len);
  	  i++;
+ 	  j++;
 
    }
    printf("out of loop");
