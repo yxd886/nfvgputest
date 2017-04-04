@@ -98,7 +98,7 @@ int main(int argc, char **argv)
  	   }
 
 
- 	  Pkt_insert(pkts,head,i,len);
+ 	  //Pkt_insert(pkts,head,i,len);
 
  	  i++;
 
