@@ -58,8 +58,8 @@ int main(int argc, char **argv)
     char *packet=tmp1+34;
     uint16_t len;
 
-	struct Pkt *pkts;
-	struct Fs *fs;
+	struct Pkt *pkts=NULL;
+	struct Fs *fs=NULL;
 	cudaError_t err = cudaSuccess;
 
     FILE* f;
@@ -101,6 +101,9 @@ int main(int argc, char **argv)
  		}*/
  		pkts=(Pkt*)malloc(32*32*sizeof(Pkt));
  		fs=(Fs*)malloc(32*sizeof(Fs));
+ 		if(pkts==NULL||fs==NULL){
+ 			printf("malloc wrong\n");
+ 		}
  		//gpu_nf_process(pkts,fs,0x010203,32);
  		Pkt_reset(pkts,32*32);
  		//cudaFree(pkts);
