@@ -7,12 +7,12 @@
 #define FS_STATE_MAX_SIZE 200
 
 
-struct Pkt{
+struct __align__(4) Pkt{
 	bool empty;
 	char pkt[PKT_SIZE];
 };
 
-struct Fs{
+struct __align__(4) Fs{
 	uint64_t actor_id_64;
 	char fs[8][FS_STATE_MAX_SIZE];
 };
