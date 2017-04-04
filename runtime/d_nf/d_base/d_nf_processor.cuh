@@ -4,6 +4,9 @@
 
 #include <helper_cuda.h>
 
+#include <stdint.h>
+
+#include "Pkt.h"
 
 extern "C"{
 
