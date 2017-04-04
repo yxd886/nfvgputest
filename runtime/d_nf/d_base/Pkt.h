@@ -3,7 +3,7 @@
 
 #ifndef PKT_H
 #define PKT_H
-#define PKT_SIZE 500
+#define PKT_SIZE 399
 #define FS_STATE_MAX_SIZE 200
 
 
