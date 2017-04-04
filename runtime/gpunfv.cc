@@ -90,50 +90,20 @@ void test(){
     gettimeofday(&whole_begin,0);
 
     for(int j=0;j<300;j++){
- 	   //cout<<"begin to read code"<<endl;
-    	//printf("begin to read head\n");
        fread(head,34,1,f);
- 	   //printf("fread head ok\n");
- 	   //cout<<"read head ok"<<endl;
  	  m_pEthhdr=(struct ether_header *)head;
  	  m_pIphdr=(struct iphdr *)(head+sizeof(struct ether_header));
  	   len = ntohs(m_pIphdr->tot_len);
- 	   //printf("length: %d\n",len);
- 	   //cout<<"begin to read  packet"<<endl;
  	   fread(packet,len-20,1,f);
- 	   //cout<<"read  packet ok"<<endl;
- 	   //cout<<"put packet to the hander"<<endl;
- 	  //printf("fread packet ok\n");
-
  	   if(i==31){
-
-
-
 		char* dst=((Pkt*)pkts)[i].pkt;
 		memcpy(dst,head,len+14);
 		pkts[i].empty=0;
- 		gpu_nf_process(pkts,fs,0x010203,32);
- 		//cudaFree(pkts);
-		//cudaFree(fs);
-
- 		//printf("i==31\n");
- 		//fflush(stdout);
-/*
- 		err=cudaMallocManaged(&pkts, 32*32*sizeof(Pkt));
- 		if(err!=cudaSuccess){
- 			printf("cuda malloc fail，error code: %s\n",cudaGetErrorString(err));
- 		}
- 		err=cudaMallocManaged(&fs, 32*sizeof(Fs));
- 		if(err!=cudaSuccess){
- 			printf("cuda malloc fail，error code: %s\n",cudaGetErrorString(err));
- 		}
- 		*/
+ 		gpu_nf_process(pkts,fs,0x01,32);
  		Pkt_reset(((Pkt*)pkts),32*32);
  		i=0;
 
  	   }else{
-		//fflush(stdout);
-		//printf("i=%d\n",i);
 		char* dst=((Pkt*)pkts)[i].pkt;
 		memcpy(dst,head,len+14);
 		pkts[i].empty=0;
@@ -141,9 +111,6 @@ void test(){
 		i++;
 
  	   }
-
-
-
 
    }
 
