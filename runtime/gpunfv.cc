@@ -66,6 +66,7 @@ int main(int argc, char **argv)
  	}
     printf("begin to enter loop\n");
     int i=0;
+    printf("begin to enter loop1\n");
     while (!feof(f))
     {
  	   //cout<<"begin to read code"<<endl;
