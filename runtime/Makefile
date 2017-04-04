@@ -62,8 +62,8 @@ endif
 LDFLAGS += -Xcompiler -rdynamic,-L$(DPDK_LIB_DIR) -Xlinker -rpath=$(DPDK_LIB_DIR) -Xcompiler -pthread,-static-libstdc++
 
 LIBS +=-Xlinker -non_shared \
-	-Xlinker --whole-archive -l$(DPDK_LIB) -Xlinker --no-whole-archive \
-	-lglog -lgflags -lprotobuf -lgrpc++ -lgrpc \
+	-Xlinker --whole-archive  -Xlinker --no-whole-archive \
+	-lglog -lgflags \
 	-lssl -lcrypto -lunwind -llzma -lpcap -lz \
 	-Xlinker -call_shared \
 	-ldl
