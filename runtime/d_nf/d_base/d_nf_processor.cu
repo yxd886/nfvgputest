@@ -45,7 +45,7 @@ __device__ int compute_service_chain_length(uint64_t s){
 
 
 __global__ void
-Runtask(Pkt* pkts, Fs* fs, uint64_t service_chain,int packet_num)
+Runtask(char* pkts, char* fs, uint64_t service_chain,int packet_num)
 {
 
 
@@ -57,10 +57,10 @@ Runtask(Pkt* pkts, Fs* fs, uint64_t service_chain,int packet_num)
     if (i < packet_num)
     {
     	int j=i;
-    	while(pkts[j].empty!=true){
+    	while(((Pkt*)pkts)[j].empty!=true){
     		for(int k=0; k<chain_len; k++){
     			int nf_id=compute_network_function(service_chain,k);
-    			nfs.nf[nf_id]->nf_logic(pkts[j].pkt,fs[j%packet_num].fs[nf_id]);
+    			nfs.nf[nf_id]->nf_logic(pkts[j].pkt,((Fs*)fs)[j%packet_num].fs[nf_id]);
     		}
     		j+=packet_num;
 
@@ -70,7 +70,7 @@ Runtask(Pkt* pkts, Fs* fs, uint64_t service_chain,int packet_num)
 
 
 
-void gpu_nf_process(Pkt* pkts,Fs* fs,uint64_t service_chain,int packet_num){
+void gpu_nf_process(char* pkts,char* fs,uint64_t service_chain,int packet_num){
 
     int threadsPerBlock = 256;
     int blocksPerGrid =(packet_num + threadsPerBlock - 1) / threadsPerBlock;

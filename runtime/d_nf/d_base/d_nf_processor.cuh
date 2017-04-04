@@ -10,7 +10,7 @@
 
 extern "C"{
 
-void gpu_nf_process(Pkt* pkts,Fs* fs,uint64_t service_chain,int packet_num);
+void gpu_nf_process(char* pkts,char* fs,uint64_t service_chain,int packet_num);
 
 
 }

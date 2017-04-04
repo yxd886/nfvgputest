@@ -61,8 +61,8 @@ void test(){
     char *packet=tmp1+34;
     uint16_t len;
 
-	struct Pkt *pkts=NULL;
-	struct Fs *fs=NULL;
+	char *pkts=NULL;
+	char *fs=NULL;
 
 	cudaError_t err = cudaSuccess;
 
@@ -75,7 +75,7 @@ void test(){
 			printf("cuda malloc fail，error code: %s\n",cudaGetErrorString(err));
 	}
 
-	Pkt_reset(pkts,32*32);
+	Pkt_reset((Pkts*)pkts,32*32);
 
     FILE* f;
     if( (f=fopen("code.txt","r"))==NULL){
