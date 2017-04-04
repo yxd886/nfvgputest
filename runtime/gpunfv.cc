@@ -48,9 +48,7 @@ void Pkt_reset(struct Pkt* Pkts,int num){
 	}
 }
 
-int main(int argc, char **argv)
-{
-
+void test(){
 	struct ether_header *m_pEthhdr;
 	struct iphdr *m_pIphdr;
     char tmp1[2000];
@@ -150,6 +148,13 @@ int main(int argc, char **argv)
    printf("time: %ld\n,",end-begin);
 
    fclose(f);
+}
 
+int main(int argc, char **argv)
+{
+
+
+	test();
 	return 0;
 }
+
