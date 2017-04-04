@@ -89,6 +89,7 @@ int main(int argc, char **argv)
  	   if(i==31){
 
  		printf("i==31\n");
+ 		fflush(stdout);
 
  		err=cudaMallocManaged(&pkts, 32*32*sizeof(Pkt));
  		if(err!=cudaSuccess){
