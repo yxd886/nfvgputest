@@ -18,7 +18,10 @@
 #include <net/ethernet.h>
 
 
-#include <cuda.h>
+#include <cuda_runtime.h>
+
+#include <helper_cuda.h>
+
 #include "d_nf/d_base/d_nf_processor.cuh"
 #include "d_nf/d_base/Pkt.h"
 
