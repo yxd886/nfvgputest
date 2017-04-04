@@ -57,8 +57,8 @@ __device__ void process(char* raw_packet,d_flow_monitor_fs* fs){
       Format(raw_packet,hd);
       //fs->CreatedTime=time(0);
       fs->SrcIp =1;
-      fs->SrcIp = Ntohl(hd->m_pIphdr->saddr);
-      fs->DstIp = Ntohl(hd->m_pIphdr->daddr);
+      //fs->SrcIp = Ntohl(hd->m_pIphdr->saddr);
+     // fs->DstIp = Ntohl(hd->m_pIphdr->daddr);
       fs->protocol   = hd->m_pIphdr->protocol;
       if(hd->m_pTcphdr==NULL){
 			  fs->SrcPort=0;
