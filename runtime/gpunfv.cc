@@ -98,7 +98,7 @@ int main(int argc, char **argv)
  	   }
 
 
- 		char* dst=Pkts[i].pkt;
+ 		char* dst=pkts[i].pkt;
  		memcpy(dst,head,len+14);
 
  	  i++;
