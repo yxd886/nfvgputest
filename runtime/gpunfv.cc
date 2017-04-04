@@ -74,15 +74,15 @@ int main(int argc, char **argv)
     for(int j=0;j<300;j++){
  	   //cout<<"begin to read code"<<endl;
     	printf("begin to read head");
-       //fread(head,34,1,f);
+       fread(head,34,1,f);
  	   printf("fread head ok");
  	   //cout<<"read head ok"<<endl;
- 	   //m_pEthhdr=(struct ether_header *)head;
- 	  // m_pIphdr=(struct iphdr *)(head+sizeof(struct ether_header));
- 	   //len = ntohs(m_pIphdr->tot_len);
+ 	  m_pEthhdr=(struct ether_header *)head;
+ 	  m_pIphdr=(struct iphdr *)(head+sizeof(struct ether_header));
+ 	   len = ntohs(m_pIphdr->tot_len);
  	   //printf("length: %d\n",len);
  	   //cout<<"begin to read  packet"<<endl;
- 	   //fread(packet,len-20,1,f);
+ 	   fread(packet,len-20,1,f);
  	   //cout<<"read  packet ok"<<endl;
  	   //cout<<"put packet to the hander"<<endl;
  	  printf("fread packet ok");
