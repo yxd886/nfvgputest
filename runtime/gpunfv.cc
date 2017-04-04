@@ -69,9 +69,9 @@ int main(int argc, char **argv)
  	}
     printf("begin to enter loop\n");
     int i=0;
-    int j=0;
+
     printf("begin to enter loop1\n");
-    /*while (j<=300){
+    for(int j=0;j<300;j++){
  	   //cout<<"begin to read code"<<endl;
     	printf("begin to read head");
        fread(head,34,1,f);
@@ -104,7 +104,7 @@ int main(int argc, char **argv)
  	  i++;
  	  j++;
 
-   }*/
+   }
    printf("out of loop");
 
    fclose(f);
