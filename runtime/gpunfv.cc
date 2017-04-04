@@ -68,17 +68,17 @@ int main(int argc, char **argv)
     int i=0;
     while (!feof(f))
     {
- 	   cout<<"begin to read code"<<endl;
+ 	   //cout<<"begin to read code"<<endl;
  	   fread(head,34,1,f);
- 	   cout<<"read head ok"<<endl;
+ 	   //cout<<"read head ok"<<endl;
  	   m_pEthhdr=(struct ether_header *)head;
  	   m_pIphdr=(struct iphdr *)(head+sizeof(struct ether_header));
  	   len = ntohs(m_pIphdr->tot_len);
  	   printf("length: %x\n",len);
- 	   cout<<"begin to read  packet"<<endl;
+ 	   //cout<<"begin to read  packet"<<endl;
  	   fread(packet,len-20,1,f);
- 	   cout<<"read  packet ok"<<endl;
- 	   cout<<"put packet to the hander"<<endl;
+ 	   //cout<<"read  packet ok"<<endl;
+ 	   //cout<<"put packet to the hander"<<endl;
 
  	   if(i==31){
 
