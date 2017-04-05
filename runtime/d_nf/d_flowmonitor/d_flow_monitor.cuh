@@ -89,7 +89,7 @@ __device__ void process(char* raw_packet,d_flow_monitor_fs* fs){
     __device__ void Format(char* packet,struct d_head_info* hd){
     hd->m_pEthhdr = (struct ether_hdr*)packet;
     hd->m_pIphdr = (struct iphdr*)(packet + sizeof(struct ether_hdr));
-    //hd->m_pTcphdr = (struct tcphdr*)(packet + sizeof(struct ether_hdr)+(hd->m_pIphdr->ihl)*4);
+    hd->m_pTcphdr = (struct tcphdr*)(packet + sizeof(struct ether_hdr)+(hd->m_pIphdr->ihl)*4);
     hd->m_pTcphdr =NULL;
     hd->protocol =  hd->m_pIphdr->protocol;
     return;
