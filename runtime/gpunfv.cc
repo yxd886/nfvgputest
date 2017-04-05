@@ -145,6 +145,8 @@ void test(){
  	   }
 
    }
+    cudaFree(pkts);
+    cudaFree(fs);
 
     struct timeval whole_end;
     gettimeofday(&whole_end,0);
