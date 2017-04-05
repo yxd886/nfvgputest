@@ -59,11 +59,12 @@ __device__ void process(char* raw_packet,d_flow_monitor_fs* fs){
       fs->SrcIp =1;
       //fs->SrcIp = Ntohl(hd->m_pIphdr->saddr);
      //fs->DstIp = Ntohl(hd->m_pIphdr->daddr);
-      hd->m_pIphdr->tot_len;
-      hd->m_pIphdr->id;
-      hd->m_pIphdr->frag_off;
-      hd->m_pIphdr->ttl;
-      hd->m_pIphdr->check;
+      uint32_t tmp;
+      tmp=hd->m_pIphdr->tot_len;
+      tmp=hd->m_pIphdr->id;
+      tmp=hd->m_pIphdr->frag_off;
+      tmp=hd->m_pIphdr->ttl;
+      tmp=hd->m_pIphdr->check;
 
       fs->protocol   = hd->m_pIphdr->protocol;
       if(hd->m_pTcphdr==NULL){
