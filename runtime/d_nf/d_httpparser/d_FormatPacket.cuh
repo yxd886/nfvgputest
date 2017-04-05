@@ -91,7 +91,7 @@ typedef struct{
 class d_IFormatPacket{
 public:
 	__device__  virtual ~d_IFormatPacket(){};
-	__device__  virtual void Format(char *packet) = 0;
+	__device__  virtual void Format(Pkt *packet) = 0;
 	__device__  virtual struct ether_hdr *GetEtherHeader() = 0;
 	__device__  virtual u_int64_t GetDstMac() = 0;
 	__device__  virtual u_int64_t GetSrcMac() = 0;

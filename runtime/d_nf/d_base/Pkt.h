@@ -37,6 +37,10 @@
 #include <rte_ring.h>
 #include <rte_mempool.h>
 #include <rte_mbuf.h>
+#include <netinet/ip.h>
+#include <netinet/tcp.h>
+#include <netinet/udp.h>
+#include <netinet/in.h>
 
 struct d_headinfo{
   struct ether_hdr m_pEthhdr;
