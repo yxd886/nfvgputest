@@ -15,7 +15,7 @@
 #include <netinet/tcp.h>
 #include <netinet/udp.h>
 #include <netinet/in.h>
-#include <net/ethernet.h>
+//#include <net/ethernet.h>
 #include <time.h>
 #include   <sys/time.h>
 
