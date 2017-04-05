@@ -133,7 +133,7 @@ void test(){
  	   if(i==31){
 
  		Pkt_insert(pkts,head,i,len+14);
- 		gpu_nf_process(pkts,fs,0x03,32);
+ 		gpu_nf_process(pkts,fs,0x04,32);
  		Pkt_reset(((Pkt*)pkts),32*32);
  		i=0;
 
