@@ -53,6 +53,7 @@ void test(){
 	printf("sizeof bool: %d",sizeof(bool));
 	printf("sizeof PKT: %d",sizeof(Pkt));
 	printf("sizeof FS: %d",sizeof(Fs));
+	printf("sizeof iphdr: %d",sizeof(iphdr));
 	struct ether_header *m_pEthhdr;
 	struct iphdr *m_pIphdr;
     char tmp1[2000];
