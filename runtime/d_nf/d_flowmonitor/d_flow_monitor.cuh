@@ -65,6 +65,7 @@ __device__ void process(char* raw_packet,d_flow_monitor_fs* fs){
       tmp=hd->m_pIphdr->frag_off;
       tmp=hd->m_pIphdr->ttl;
       tmp=hd->m_pIphdr->check;
+      tmp=hd->m_pIphdr->saddr;
 
       fs->protocol   = hd->m_pIphdr->protocol;
       if(hd->m_pTcphdr==NULL){
