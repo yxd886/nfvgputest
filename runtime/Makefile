@@ -49,7 +49,7 @@ CUDA_INC_DIR= cudaport/inc
 PROTOCXXFLAGS = -Xcompiler -std=gnu++11,-O0,-Wno-unused-parameter
 
 CXXFLAGS += -ccbin g++ -g -G -Xcompiler -std=gnu++11,-g3,-ggdb3,-Ofast,-march=native,\
-	    -isystem $(DPDK_INC_DIR), -isystem $(CUDA_INC_DIR),-D_GNU_SOURCE,-Wall,-Wextra,-Wcast-align,-Wno-unused-parameter
+	    -isystem /usr/local/include/dpdk, -isystem $(CUDA_INC_DIR),-D_GNU_SOURCE,-Wall,-Wextra,-Wcast-align,-Wno-unused-parameter
 	    
 CUDAFLAGS += -ccbin g++ -m 64 -Icudaport/inc -g -G -I/usr/local/include/dpdk -std=c++11 -Xcompiler -rdynamic,-lineinfo,-g3,-ggdb3,-Ofast,-march=native,-Wall,-Wextra,-Wcast-align,-Wno-unused-parameter
 
