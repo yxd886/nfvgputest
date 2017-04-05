@@ -88,7 +88,7 @@ void test(){
 	printf("sizeof PKT: %d",sizeof(Pkt));
 	printf("sizeof FS: %d",sizeof(Fs));
 	printf("sizeof iphdr: %d",sizeof(iphdr));
-	struct ether_header *m_pEthhdr;
+	struct ether_hdr *m_pEthhdr;
 	struct iphdr *m_pIphdr;
     char tmp1[2000];
     memset(tmp1,0,sizeof(tmp1));
