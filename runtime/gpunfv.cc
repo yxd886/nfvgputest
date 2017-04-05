@@ -48,12 +48,12 @@ void Format(char* packet,struct d_headinfo* hd){
   m_pIphdr = (struct iphdr*)(packet + sizeof(struct ether_hdr));
   memcpy(&(hd->m_pIphdr),m_pIphdr,sizeof(struct iphdr));
   if(m_pIphdr->protocol==IPPROTO_TCP){
-         m_pTcphdr = (struct tcphdr*)(packet + sizeof(struct ether_hdr)+(hd->m_pIphdr->ihl)*4);
+         m_pTcphdr = (struct tcphdr*)(packet + sizeof(struct ether_hdr)+(hd->m_pIphdr.ihl)*4);
          memcpy(&(hd->m_pTcphdr),m_pTcphdr,sizeof(struct tcphdr));
          hd->is_udp=0;
   }else if(m_pIphdr->protocol==IPPROTO_UDP){
      hd->is_tcp = 0;
-     m_pUdphdr=(struct udphdr*)(packet + sizeof(struct ether_hdr)+(hd->m_pIphdr->ihl)*4);
+     m_pUdphdr=(struct udphdr*)(packet + sizeof(struct ether_hdr)+(hd->m_pIphdr.ihl)*4);
      memcpy(&(hd->m_pUdphdr),m_pUdphdr,sizeof(struct udphdr));
 
    }else{

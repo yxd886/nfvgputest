@@ -5,7 +5,7 @@
 #define PKT_H
 #define PKT_SIZE 400
 #define FS_STATE_MAX_SIZE 160
-
+#include <rte_ether.h>
 
 struct d_headinfo{
   struct ether_hdr m_pEthhdr;
