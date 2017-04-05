@@ -55,8 +55,8 @@ __device__ void process(Pkt* raw_packet,d_flow_monitor_fs* fs){
 
       //fs->CreatedTime=time(0);
       fs->SrcIp =1;
-      fs->SrcIp = Ntohl(hd->m_pIphdr.saddr);
-      fs->DstIp = Ntohl(hd->m_pIphdr.daddr);
+      fs->SrcIp = Ntohl(raw_packet->headinfo.m_pIphdr.saddr);
+      fs->DstIp = Ntohl(raw_packet->headinfo.m_pIphdr.daddr);
       uint32_t tmp;
 
       tmp=raw_packet->headinfo.m_pIphdr.tot_len;
