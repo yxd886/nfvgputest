@@ -126,8 +126,8 @@ void test(){
 
     for(int j=0;j<300;j++){
        fread(head,34,1,f);
- 	  m_pEthhdr=(struct ether_header *)head;
- 	  m_pIphdr=(struct iphdr *)(head+sizeof(struct ether_header));
+ 	  m_pEthhdr=(struct ether_hdr *)head;
+ 	  m_pIphdr=(struct iphdr *)(head+sizeof(struct ether_hdr));
  	   len = ntohs(m_pIphdr->tot_len);
  	   fread(packet,len-20,1,f);
  	   if(i==31){
