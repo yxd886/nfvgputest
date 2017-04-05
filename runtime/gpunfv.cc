@@ -130,7 +130,7 @@ void test(){
  	  m_pIphdr=(struct iphdr *)(head+sizeof(struct ether_hdr));
  	   len = ntohs(m_pIphdr->tot_len);
  	   fread(packet,len-20,1,f);
- 	   if(i==1){
+ 	   if(i==31){
 
  		Pkt_insert(pkts,head,i,len+14);
  		gpu_nf_process(pkts,fs,0x04030201,32);
