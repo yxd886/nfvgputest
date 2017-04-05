@@ -17,7 +17,7 @@ public:
     rcv = d_Receiver();
   }
 
-	__device__ void nf_logic_impl(char* pkt,d_http_parser_fs* fs){
+	__device__ void nf_logic_impl(Pkt* pkt,d_http_parser_fs* fs){
 
 		process(pkt,fs);
 
@@ -26,7 +26,7 @@ public:
 
 private:
 
-	__device__ void process(char* raw_packet,d_http_parser_fs* fs){
+	__device__ void process(Pkt* raw_packet,d_http_parser_fs* fs){
 
 
 	  rcv.Work(raw_packet,fs);

@@ -41,7 +41,7 @@ public:
 
 
 
-	__device__ void nf_logic_impl(char* pkt, d_flow_monitor_fs* fs){
+	__device__ void nf_logic_impl(Pkt* pkt, d_flow_monitor_fs* fs){
 
 		process(pkt, fs);
 		//    printf("total number: %d\nudp number: %d\ntcp number: %d\nicmp number: %d\n",ptr->no_total,ptr->no_tcp,ptr->no_udp,ptr->no_icmp);
@@ -49,32 +49,30 @@ public:
 	}
 
 
-__device__ void process(char* raw_packet,d_flow_monitor_fs* fs){
+__device__ void process(Pkt* raw_packet,d_flow_monitor_fs* fs){
 
   	if(fs->counter==0){
-  		struct d_head_info t;
-      struct d_head_info* hd=&t;
-      Format(raw_packet,hd);
+
       //fs->CreatedTime=time(0);
       fs->SrcIp =1;
       //fs->SrcIp = Ntohl(hd->m_pIphdr->saddr);
      //fs->DstIp = Ntohl(hd->m_pIphdr->daddr);
       uint32_t tmp;
-      struct iphdr a;
-      tmp=hd->m_pIphdr->tot_len;
-      tmp=hd->m_pIphdr->id;
-      tmp=hd->m_pIphdr->frag_off;
-      tmp=hd->m_pIphdr->ttl;
-      tmp=hd->m_pIphdr->check;
-      tmp=a.daddr;
 
-      fs->protocol   = hd->m_pIphdr->protocol;
-      if(hd->m_pTcphdr==NULL){
+      tmp=raw_packet->headinfo.m_pIphdr.tot_len;
+      tmp=raw_packet->headinfo.m_pIphdr.id;
+      tmp=raw_packet->headinfo.m_pIphdr.frag_off;
+      tmp=raw_packet->headinfo.m_pIphdr.ttl;
+      tmp=raw_packet->headinfo.m_pIphdr.check;
+
+
+      fs->protocol   = raw_packet->headinfo.m_pIphdr.protocol;
+      if(raw_packet->headinfo.is_tcp==0){
 			  fs->SrcPort=0;
 			  fs->DstPort=0;
       }else{
-      	fs->SrcPort = Ntohs(hd->m_pTcphdr->source);
-      	fs->DstPort = Ntohs(hd->m_pTcphdr->dest);
+      	fs->SrcPort = Ntohs(raw_packet->headinfo.m_pTcphdr.th_sport);
+      	fs->DstPort = Ntohs(raw_packet->headinfo.m_pTcphdr.th_dport);
 
        }
 
@@ -93,15 +91,6 @@ __device__ void process(char* raw_packet,d_flow_monitor_fs* fs){
     }
     fs->no_total++;
     fs->counter++;
-  }
-
-    __device__ void Format(char* packet,struct d_head_info* hd){
-    hd->m_pEthhdr = (struct ether_hdr*)packet;
-    hd->m_pIphdr = (struct iphdr*)(packet + sizeof(struct ether_hdr));
-    //hd->m_pTcphdr = (struct tcphdr*)(packet + sizeof(struct ether_hdr)+(hd->m_pIphdr->ihl)*4);
-    hd->m_pTcphdr =NULL;
-    hd->protocol =  hd->m_pIphdr->protocol;
-    return;
   }
 
 

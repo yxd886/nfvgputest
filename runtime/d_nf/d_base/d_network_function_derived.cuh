@@ -12,7 +12,7 @@ public:
     static_assert(std::is_pod<TNFState>::value, "NF flow state is not a POD Type");
   }
 
-	__device__ inline void nf_logic(char* pkt, char* state_ptr) override{
+	__device__ inline void nf_logic(Pkt* pkt, char* state_ptr) override{
     nf_instance_.nf_logic_impl(pkt, reinterpret_cast<TNFState*>(state_ptr));
   }
 

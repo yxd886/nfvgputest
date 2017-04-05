@@ -7,6 +7,7 @@
 // helper functions and utilities to work with CUDA
 #include <helper_functions.h>
 #include <helper_cuda.h>
+#include "Pkt.h"
 
 class d_network_function_base{
 public:
@@ -43,7 +44,7 @@ public:
   }
 
 
-  __device__ virtual void nf_logic(char* pkt, char* state_ptr) = 0;
+  __device__ virtual void nf_logic(Pkt* pkt, char* state_ptr) = 0;
 
   __device__ inline size_t get_nf_state_size(){
     return nf_state_size_;

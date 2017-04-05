@@ -8,7 +8,7 @@ class d_pkt_counter{
 public:
 	__device__ d_pkt_counter(){}
 	__device__ ~d_pkt_counter(){}
-	__device__ inline void nf_logic_impl(char* pkt, d_pkt_counter_fs* fs){
+	__device__ inline void nf_logic_impl(Pkt* pkt, d_pkt_counter_fs* fs){
     fs->counter += 1;
   }
 };

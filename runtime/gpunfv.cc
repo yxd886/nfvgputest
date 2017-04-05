@@ -33,10 +33,44 @@
  *
  * See cuda.h for error code descriptions.
  */
+
+
+void Format(char* packet,struct d_headinfo* hd){
+  struct ether_hdr* m_pEthhdr;
+  struct iphdr* m_pIphdr;
+  struct tcphdr* m_pTcphdr;
+  struct udphdr* m_pUdphdr;
+
+
+
+  m_pEthhdr = (struct ether_hdr*)packet;
+  memcpy(&(hd->m_pEthhdr),m_pEthhdr,sizeof(struct ether_hdr));
+  m_pIphdr = (struct iphdr*)(packet + sizeof(struct ether_hdr));
+  memcpy(&(hd->m_pIphdr),m_pIphdr,sizeof(struct iphdr));
+  if(m_pIphdr->protocol==IPPROTO_TCP){
+         m_pTcphdr = (struct tcphdr*)(packet + sizeof(struct ether_hdr)+(hd->m_pIphdr->ihl)*4);
+         memcpy(&(hd->m_pTcphdr),m_pTcphdr,sizeof(struct tcphdr));
+         hd->is_udp=0;
+  }else if(m_pIphdr->protocol==IPPROTO_UDP){
+     hd->is_tcp = 0;
+     m_pUdphdr=(struct udphdr*)(packet + sizeof(struct ether_hdr)+(hd->m_pIphdr->ihl)*4);
+     memcpy(&(hd->m_pUdphdr),m_pUdphdr,sizeof(struct udphdr));
+
+   }else{
+      hd->is_tcp = 0;
+      hd->is_udp = 0;
+    }
+
+  hd->protocol =  m_pIphdr->protocol;
+  return;
+}
+
+
 void Pkt_insert(struct Pkt* Pkts,char* pkt,int i,int total_len){
 
 	char* dst=Pkts[i].pkt;
 	memcpy(dst,pkt,total_len);
+	Format(pkt,&(Pkts[i].headinfo));
 	Pkts[i].empty=0;
 
 }
@@ -97,17 +131,14 @@ void test(){
  	   len = ntohs(m_pIphdr->tot_len);
  	   fread(packet,len-20,1,f);
  	   if(i==31){
-		char* dst=((Pkt*)pkts)[i].pkt;
-		memcpy(dst,head,len+14);
-		pkts[i].empty=0;
+
+ 		Pkt_insert(pkts,head,i,len+14);
  		gpu_nf_process(pkts,fs,0x02,32);
  		Pkt_reset(((Pkt*)pkts),32*32);
  		i=0;
 
  	   }else{
-		char* dst=((Pkt*)pkts)[i].pkt;
-		memcpy(dst,head,len+14);
-		pkts[i].empty=0;
+		Pkt_insert(pkts,head,i,len+14);
 
 		i++;
 

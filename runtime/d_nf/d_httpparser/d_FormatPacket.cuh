@@ -118,11 +118,11 @@ class d_CFormatPacket : public d_IFormatPacket{
 public:
 	__device__ d_CFormatPacket(){}
 	__device__ ~d_CFormatPacket(){}
-	__device__  void Format(char* packet){
-		m_pPkt = packet;
-		m_pEthhdr = (struct ether_hdr*)packet;
-		m_pIphdr = (struct iphdr*)(packet + sizeof(struct ether_hdr));
-		m_pTcphdr = (struct tcphdr*)(packet + sizeof(struct ether_hdr)+(m_pIphdr->ihl)*4);
+	__device__  void Format(Pkt* packet){
+		m_pPkt = packet->pkt;
+		m_pEthhdr = &(packet->headinfo.m_pEthhdr);
+		m_pIphdr = &(packet->headinfo.m_pIphdr);
+		m_pTcphdr = &(packet->headinfo.m_pTcphdr);
 		m_uPktLen = Ntohs(m_pIphdr->tot_len);
 		m_pEthIndex = (int16_t*)(&m_pEthhdr->ether_type);
 		m_pData = NULL;

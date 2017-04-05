@@ -14,7 +14,7 @@ public:
   }
 
 	__device__ 	~d_Receiver(){}
-	__device__ void Work(char* msg, d_http_parser_fsPtr& sesp){
+	__device__ void Work(Pkt* msg, d_http_parser_fsPtr& sesp){
 
 		HandleMessage( msg,sesp);
 
@@ -23,7 +23,7 @@ public:
 
 
 private:
-	__device__ 	void HandleMessage(char* msg, d_http_parser_fsPtr& sesp){
+	__device__ 	void HandleMessage(Pkt* msg, d_http_parser_fsPtr& sesp){
 		if(msg == NULL){
 			//cout<<"message is empty, return"<<endl;
 			return;

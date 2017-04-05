@@ -17,15 +17,7 @@ typedef short Bool;
 
 #define MASK_IP(x, mask) (x & (0xffffffff << (!mask ? 0 : (32 - mask))))
 
-struct d_headinfo{
-  struct ether_hdr *m_pEthhdr;
-  struct iphdr *m_pIphdr;
-  struct tcphdr *m_pTcphdr;
-  struct udphdr *m_pUdphdr;
-  uint8_t protocol;
-};
-
-
+#include "../d_base/Pkt.h"
 struct d_firewall_state{
   int match_no;
   int drop_no;

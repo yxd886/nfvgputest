@@ -19,6 +19,7 @@
 #include <memory>
 #include "d_hash.cuh"
 #include "../d_base/d_nf_item.h"
+#include "../d_base/Pkt.h"
 
 enum d_DIRECTION{
 	DIRUNKNOWN,
