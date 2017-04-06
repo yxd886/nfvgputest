@@ -20,6 +20,16 @@ __device__ void Init_nfs(struct d_flow_actor_nfs* nfs){
 }
 
 
+__device__ void Release_nfs(struct d_flow_actor_nfs* nfs){
+
+
+	delete nfs->nf[1];
+	delete nfs->nf[2];
+	delete nfs->nf[3];
+	delete nfs->nf[4];
+
+}
+
 
 __device__ uint8_t compute_network_function(uint64_t s, int pos){
   return static_cast<uint8_t>((s>>(8*pos))&0x00000000000000FF);
@@ -72,6 +82,7 @@ Runtask(Pkt* pkts, Fs* fs, uint64_t service_chain,int packet_num)
 
     	}
     }
+    Release_nfs(&nfs);
 }
 
 
