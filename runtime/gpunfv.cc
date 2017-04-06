@@ -140,7 +140,7 @@ void test(){
  	   if(i>=0){
 
  		Pkt_insert(pkts,head,i,len+14);
- 		gpu_nf_process(pkts,fs,0x04030201,32);
+ 		gpu_nf_process(pkts,fs,0x040201,32);
  	    cudaFree(pkts);
  	    cudaFree(fs);
 
