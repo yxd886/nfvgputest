@@ -62,7 +62,9 @@ Runtask(Pkt* pkts, Fs* fs, uint64_t service_chain,int packet_num)
 
     		for(int k=0; k<chain_len; k++){
     			int nf_id=compute_network_function(service_chain,k);
-    			nfs.nf[nf_id]->nf_logic(&(pkts[j]),fs[j%packet_num].fs[nf_id]);
+    			Pkt* pkt=&(pkts[j]);
+    			int l=nf_id;
+    			nfs.nf[l]->nf_logic(pkt,fs[j%packet_num].fs[l]);
     		}
 
     		j+=packet_num;
