@@ -125,7 +125,7 @@ void test(){
     struct timeval whole_begin;
     gettimeofday(&whole_begin,0);
 
-    for(int j=0;j<300;j++){
+    for(int j=0;j<10;j++){
        fread(head,34,1,f);
  	  m_pEthhdr=(struct ether_hdr *)head;
  	  m_pIphdr=(struct iphdr *)(head+sizeof(struct ether_hdr));
