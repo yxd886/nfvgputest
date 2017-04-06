@@ -25,6 +25,7 @@
 
 #include "d_nf/d_base/d_nf_processor.cuh"
 #include "d_nf/d_base/Pkt.h"
+#include "d_nf/d_pktcounter/d_pkt_counter.cuh"
 
 
 /**
@@ -145,6 +146,9 @@ void test(){
  	   }
 
    }
+
+    d_pkt_counter_fs* tmp_ptr=reinterpret_cast<d_pkt_counter_fs*>(fs[0].fs[0]);
+    printf("packet num: %d\n",tmp_ptr->counter);
     cudaFree(pkts);
     cudaFree(fs);
 
