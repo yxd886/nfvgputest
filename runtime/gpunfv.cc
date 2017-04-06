@@ -146,9 +146,11 @@ void test(){
  	   }
 
    }
+    for(int i=0;i<8;i++){
+        d_pkt_counter_fs* tmp_ptr=reinterpret_cast<d_pkt_counter_fs*>(fs[i].fs[1]);
+        printf("packet num: %d\n",tmp_ptr->counter);
+    }
 
-    d_pkt_counter_fs* tmp_ptr=reinterpret_cast<d_pkt_counter_fs*>(fs[0].fs[1]);
-    printf("packet num: %d\n",tmp_ptr->counter);
     cudaFree(pkts);
     cudaFree(fs);
 
