@@ -141,7 +141,19 @@ void test(){
 
  		Pkt_insert(pkts,head,i,len+14);
  		gpu_nf_process(pkts,fs,0x04030201,32);
- 		Pkt_reset(((Pkt*)pkts),32*32);
+ 	    cudaFree(pkts);
+ 	    cudaFree(fs);
+
+ 		err=cudaMallocManaged(&pkts, 32*32*sizeof(Pkt));
+ 		if(err!=cudaSuccess){
+ 				printf("cuda malloc fail，error code: %s\n",cudaGetErrorString(err));
+ 		}
+ 		err=cudaMallocManaged(&fs, 32*sizeof(Fs));
+ 		if(err!=cudaSuccess){
+ 				printf("cuda malloc fail，error code: %s\n",cudaGetErrorString(err));
+ 		}
+
+ 		Pkt_reset((Pkt*)pkts,32*32);
  		i=0;
 
  	   }else{
@@ -159,8 +171,7 @@ void test(){
         counter+=tmp_ptr->counter;
     }
     printf("total packet num: %d\n",counter);
-    cudaFree(pkts);
-    cudaFree(fs);
+
 
     struct timeval whole_end;
     gettimeofday(&whole_end,0);
